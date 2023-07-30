@@ -39,6 +39,14 @@ AuthorSchema.virtual("date_of_death_formatted").get(function () {
   return this.date_of_death ? DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED) : '';
 });
 
+AuthorSchema.virtual("date_of_birth_YYMMDD").get(function () {
+  return this.date_of_birth ? DateTime.fromJSDate(this.date_of_birth).toISODate(DateTime.DATE_MED) : '';
+});
+
+AuthorSchema.virtual("date_of_death_YYMMDD").get(function () {
+  return this.date_of_death ? DateTime.fromJSDate(this.date_of_death).toISODate(DateTime.DATE_MED) : '';
+});
+
 
 AuthorSchema.virtual("lifespan").get(function () {
     const birth = DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED);
