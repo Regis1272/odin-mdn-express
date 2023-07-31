@@ -1,6 +1,7 @@
 {
   "name": "express-locallibrary-tutorial-pug",
   "version": "0.0.0",
+  "engines": ">=18.16.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
