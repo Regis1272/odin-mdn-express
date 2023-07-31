@@ -8,7 +8,7 @@ const AuthorSchema = new Schema({
     family_name: { type: String, required: true, maxLength: 100 },
     date_of_birth: { type: Date },
     date_of_death: { type: Date },
-})
+});
 
 // Virtual for author's full name:
 AuthorSchema.virtual("name").get(function () {
@@ -32,25 +32,40 @@ AuthorSchema.virtual("url").get(function () {
 });
 
 AuthorSchema.virtual("date_of_birth_formatted").get(function () {
-  return this.date_of_birth ? DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED) : '';
+    return this.date_of_birth
+        ? DateTime.fromJSDate(this.date_of_birth).toLocaleString(
+              DateTime.DATE_MED,
+          )
+        : "";
 });
 
 AuthorSchema.virtual("date_of_death_formatted").get(function () {
-  return this.date_of_death ? DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED) : '';
+    return this.date_of_death
+        ? DateTime.fromJSDate(this.date_of_death).toLocaleString(
+              DateTime.DATE_MED,
+          )
+        : "";
 });
 
 AuthorSchema.virtual("date_of_birth_YYMMDD").get(function () {
-  return this.date_of_birth ? DateTime.fromJSDate(this.date_of_birth).toISODate(DateTime.DATE_MED) : '';
+    return this.date_of_birth
+        ? DateTime.fromJSDate(this.date_of_birth).toISODate(DateTime.DATE_MED)
+        : "";
 });
 
 AuthorSchema.virtual("date_of_death_YYMMDD").get(function () {
-  return this.date_of_death ? DateTime.fromJSDate(this.date_of_death).toISODate(DateTime.DATE_MED) : '';
+    return this.date_of_death
+        ? DateTime.fromJSDate(this.date_of_death).toISODate(DateTime.DATE_MED)
+        : "";
 });
 
-
 AuthorSchema.virtual("lifespan").get(function () {
-    const birth = DateTime.fromJSDate(this.date_of_birth).toLocaleString(DateTime.DATE_MED);
-    const death = DateTime.fromJSDate(this.date_of_death).toLocaleString(DateTime.DATE_MED);
+    const birth = DateTime.fromJSDate(this.date_of_birth).toLocaleString(
+        DateTime.DATE_MED,
+    );
+    const death = DateTime.fromJSDate(this.date_of_death).toLocaleString(
+        DateTime.DATE_MED,
+    );
 
     if (!this.date_of_birth) return `Non-existent`;
     return this.date_of_death ? `${birth} - ${death}` : `${birth} - Present`;

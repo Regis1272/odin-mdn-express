@@ -10,11 +10,11 @@ const BookSchema = new Schema({
     genre: [{ type: Schema.Types.ObjectId, ref: "Genre" }],
 });
 
-BookSchema.virtual("url").get(function() {
+BookSchema.virtual("url").get(function () {
     // Again...
     // We don't use an arrow function because we need 'this'...
     return `/catalog/book/${this._id}`;
 });
 
 // Export model
-module.exports = mongoose.model('Book', BookSchema);
+module.exports = mongoose.model("Book", BookSchema);
